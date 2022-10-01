@@ -26,7 +26,7 @@
   }
 
   body{
-    @apply bg-light-gray dark:bg-dark-gray text-medium-gray;
+    @apply bg-light-gray dark:bg-very-dark-gray text-medium-gray;
   }
 }
 
@@ -48,5 +48,8 @@
   }
   .body-md{
     @apply text-body-md font-bold;
+  }
+  .main-height {
+    height: calc(100vh - 4rem)
   }
 }

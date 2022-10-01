@@ -1,12 +1,13 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: "class",
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
       colors: {
         black: "rgb(var(--color-black) / <alpha-value>)",
         "very-dark-gray": "rgb(var(--color-very-dark-gray) / <alpha-value>)",
-        "dark-gray": "rgb(var(--color-very-dark-gray) / <alpha-value>)",
+        "dark-gray": "rgb(var(--color-dark-gray) / <alpha-value>)",
         "dark-lines": "rgb(var(--color-dark-lines) / <alpha-value>)",
         "medium-gray": "rgb(var(--color-medium-gray) / <alpha-value>)",
         "light-lines": "rgb(var(--color-light-lines) / <alpha-value>)",
