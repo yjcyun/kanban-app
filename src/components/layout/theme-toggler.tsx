@@ -6,7 +6,7 @@ const ThemeToggler = () => {
   const { theme, switchTheme } = useTheme();
 
   return (
-    <div className="bg-light-gray py-[14px] mx-6 rounded-md mb-2">
+    <div className="bg-color py-[14px] mx-6 rounded-md mb-2">
       <div className="flex items-center justify-center space-x-2">
         <SunIcon />
         <button

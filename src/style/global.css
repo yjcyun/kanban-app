@@ -52,4 +52,19 @@
   .main-height {
     height: calc(100vh - 4rem)
   }
+  .border-color {
+    @apply border-light-lines dark:border-dark-lines;
+  }
+  .bg-color {
+    @apply bg-light-gray dark:bg-very-dark-gray;
+  }
+  .bg-secondary-color {
+    @apply bg-white dark:bg-dark-gray;
+  }
+  .heading-color {
+    @apply text-black dark:text-white;
+  }
+  .bg-new-col {
+    background: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
+  }
 }

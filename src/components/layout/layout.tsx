@@ -13,7 +13,7 @@ const Layout = ({ children }: LayoutProps) => {
     <div className="">
       <Header />
 
-      <main className="w-full">
+      <main className="w-full flex">
         {width! > 640 && <Sidebar />}
         {children}
       </main>
