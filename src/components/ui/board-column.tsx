@@ -1,3 +1,4 @@
+import { TaskType } from "../../types/data";
 import BoardCard from "./board-card";
 import ColumnTitle from "./column-title";
 import NewColumn from "./new-column";
@@ -5,7 +6,7 @@ import NewColumn from "./new-column";
 type BoardColumnProps = {
   label: string;
   length?: number;
-  tasks?: { title: string }[];
+  tasks?: TaskType[];
 };
 
 const BoardColumn = ({ label, length, tasks }: BoardColumnProps) => {
@@ -15,7 +16,13 @@ const BoardColumn = ({ label, length, tasks }: BoardColumnProps) => {
       {tasks ? (
         <div className="grid gap-5">
           {tasks.map((task) => (
-            <BoardCard key={task.title} />
+            <BoardCard
+              key={task.title}
+              subtasks={task.subtasks}
+              title={task.title}
+              description={task.description}
+              status={task.status}
+            />
           ))}
         </div>
       ) : (

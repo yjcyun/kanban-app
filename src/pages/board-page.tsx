@@ -1,17 +1,27 @@
 import BoardColumn from "../components/ui/board-column";
-
-const tasks = [
-  {
-    title: "Design settings and search pages",
-  },
-];
+import { useAppSelector } from "../hooks/useStore";
 
 const BoardPage = () => {
+  const { boards } = useAppSelector((state) => state.tasks);
+
+  if (boards.length === 0) {
+    return <div>Loading</div>;
+  }
+
+  const platformLaunch = boards.filter(
+    (board) => board.name === "Platform Launch"
+  )[0].columns;
+
   return (
     <>
-      <BoardColumn tasks={tasks} label="todo" length={3} />
-      <BoardColumn tasks={tasks} label="doing" length={5} />
-      <BoardColumn tasks={tasks} label="done" length={8} />
+      {platformLaunch.map((column) => (
+        <BoardColumn
+          tasks={column.tasks}
+          label={column.name}
+          length={column.tasks.length}
+          key={column.name}
+        />
+      ))}
       <BoardColumn label="" />
     </>
   );
