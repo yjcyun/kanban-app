@@ -1,4 +1,4 @@
-import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
+import { useAppDispatch } from "../../hooks/useStore";
 import { openModal } from "../../store/modal-slice";
 import { TaskType } from "../../types/data";
 

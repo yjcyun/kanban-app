@@ -9,10 +9,12 @@ export interface TaskState {
     }[];
     name: string;
   }[];
+  boardColumns: string[];
 }
 
 const initialState: TaskState = {
   boards: [],
+  boardColumns: [],
 };
 
 export const taskSlice = createSlice({
@@ -22,9 +24,22 @@ export const taskSlice = createSlice({
     getLocalData: (state, action: PayloadAction<any>) => {
       state.boards = action.payload;
     },
+    setBoardColumns: (state, action: PayloadAction<string>) => {
+      const selectedBoardTab = action.payload;
+      const selectedBoard = state.boards.find(
+        (item) => item.name === selectedBoardTab
+      );
+
+      const selectedBoardColumns = selectedBoard!.columns.map(
+        (col) => col.name
+      );
+
+      state.boardColumns = selectedBoardColumns;
+    },
+    editTask: (state, action) => {},
   },
 });
 
-export const { getLocalData } = taskSlice.actions;
+export const { getLocalData, setBoardColumns } = taskSlice.actions;
 
 export default taskSlice.reducer;

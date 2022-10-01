@@ -28,6 +28,7 @@ module.exports = {
       },
       boxShadow: {
         card: "0px 4px 6px rgba(54, 78, 126, 0.101545)",
+        dropbox: "0px 10px 20px rgba(54, 78, 126, 0.25)",
       },
       backgroundImage: {
         "new-column": "var(--new-col-gradient)",

@@ -2,7 +2,7 @@ import { ReactNode, useState } from "react";
 import Header from "./header";
 import Sidebar from "./sidebar";
 import { useWindowSize } from "../../hooks/useWindowSize";
-import Modal from "../ui/modal";
+import Modals from "../modals";
 type LayoutProps = {
   children: ReactNode;
 };
@@ -33,7 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
           {children}
         </div>
       </main>
-      <Modal />
+      <Modals />
     </div>
   );
 };

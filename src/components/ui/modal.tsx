@@ -1,13 +1,13 @@
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef } from "react";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
 import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { closeModal } from "../../store/modal-slice";
-import { Subtasks } from "../../types/data";
 
-const completedSubtasks = (subtasks: Subtasks) =>
-  subtasks.filter((task) => task.isCompleted).length;
+type ModalProps = {
+  children: ReactNode;
+};
 
-const Modal = () => {
+const Modal = ({ children }: ModalProps) => {
   const { type, data } = useAppSelector((state) => state.modal);
 
   const dispatch = useAppDispatch();
@@ -26,23 +26,7 @@ const Modal = () => {
         className="bg-secondary-color w-full mx-4 sm:w-[480px] sm:mx-0 h-fit rounded-md p-8"
         ref={ref}
       >
-        {/* View Task */}
-        {data && (
-          <>
-            <h2 className="heading-lg mb-6">{data.title}</h2>
-            {data.description && (
-              <p className="body-lg mb-6">{data.description}</p>
-            )}
-            <div>
-              <h3 className="body-md">
-                Subtasks ({completedSubtasks(data.subtasks)} of{" "}
-                {data.subtasks.length})
-              </h3>
-            </div>
-          </>
-        )}
-
-        {/* End of View Task */}
+        {children}
       </div>
     </div>
   );
