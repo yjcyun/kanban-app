@@ -23,7 +23,6 @@ const Header = () => {
         ) : (
           <Logo />
         )}
-        {/* {width! > 640 ? null : <Logo />} */}
       </div>
       <div className="flex h-full w-full justify-between pl-4 sm:pl-6">
         <div className="flex items-center gap-2">
