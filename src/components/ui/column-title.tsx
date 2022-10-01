@@ -16,7 +16,7 @@ const ColumnTitle = ({ label, length }: ColumnTitleProps) => {
   };
 
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 mb-6">
       <div
         className={`w-[15px] h-[15px] rounded-full ${mapLabelColour()}`}
       ></div>

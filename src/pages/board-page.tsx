@@ -8,12 +8,12 @@ const tasks = [
 
 const BoardPage = () => {
   return (
-    <div className="flex gap-6">
+    <>
       <BoardColumn tasks={tasks} label="todo" length={3} />
       <BoardColumn tasks={tasks} label="doing" length={5} />
       <BoardColumn tasks={tasks} label="done" length={8} />
       <BoardColumn label="" />
-    </div>
+    </>
   );
 };
 

@@ -5,34 +5,43 @@ import { ReactComponent as DownIcon } from "../../assets/icon-chevron-down.svg";
 import { ReactComponent as VerticalIcon } from "../../assets/icon-vertical-ellipsis.svg";
 import { useWindowSize } from "../../hooks/useWindowSize";
 import Button from "../ui/button";
+import { useTheme } from "../../hooks/useTheme";
 
 const Header = () => {
   const { width } = useWindowSize();
+  const { theme } = useTheme();
 
   return (
-    <div className="flex justify-between items-center bg-white dark:bg-dark-gray h-16 pr-4">
-      <div className="flex gap-4 h-full">
-        <div className="sm:border-r border-light-lines dark:border-dark-lines h-full flex items-center sm:pr-6 pl-4 sm:w-[300px] shrink-0">
-          {width! > 640 ? <LogoDark /> : <Logo />}
-          {/* {width! > 640 ? null : <Logo />} */}
-        </div>
-
+    <header className="flex items-center bg-white dark:bg-dark-gray h-16 pr-4 w-full">
+      <div className="sm:border-r border-light-lines dark:border-dark-lines h-full flex items-center sm:pr-6 pl-4 sm:w-[300px] shrink-0">
+        {width! > 640 ? (
+          theme === "dark" ? (
+            <LogoLight />
+          ) : (
+            <LogoDark />
+          )
+        ) : (
+          <Logo />
+        )}
+        {/* {width! > 640 ? null : <Logo />} */}
+      </div>
+      <div className="flex h-full w-full justify-between pl-4 sm:pl-6">
         <div className="flex items-center gap-2">
           <h2 className="heading-lg text-black dark:text-white">
             Platform Launch
           </h2>
           <DownIcon className="sm:hidden" />
         </div>
-      </div>
-      <div className="flex items-center gap-4">
-        <div className="w-12 sm:w-[164px]">
-          <Button buttonType="primary">
-            {width! > 640 ? "+Add New Task" : "+"}
-          </Button>
+        <div className="flex items-center gap-4">
+          <div className="w-12 sm:w-[164px]">
+            <Button buttonType="primary">
+              {width! > 640 ? "+Add New Task" : "+"}
+            </Button>
+          </div>
+          <VerticalIcon />
         </div>
-        <VerticalIcon />
       </div>
-    </div>
+    </header>
   );
 };
 

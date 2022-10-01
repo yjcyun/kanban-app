@@ -19,6 +19,15 @@
     --color-main-purple-hover: 168 164 255;
     --color-red: 234 85 85;
     --color-red-hover: 255 151 152;
+
+  }
+
+  .light {
+    --new-col-gradient: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
+  }
+
+  .dark {
+    --new-col-gradient: linear-gradient(180deg, rgba(43, 44, 55, 0.25) 0%, rgba(43, 44, 55, 0.125) 100%);
   }
 
   html {
@@ -63,8 +72,5 @@
   }
   .heading-color {
     @apply text-black dark:text-white;
-  }
-  .bg-new-col {
-    background: linear-gradient(180deg, #E9EFFA 0%, rgba(233, 239, 250, 0.5) 100%);
   }
 }

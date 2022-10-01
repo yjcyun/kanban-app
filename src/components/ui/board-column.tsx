@@ -10,10 +10,10 @@ type BoardColumnProps = {
 
 const BoardColumn = ({ label, length, tasks }: BoardColumnProps) => {
   return (
-    <div className="w-[280px]">
+    <div className="w-[280px] flex flex-col h-full">
       <ColumnTitle label={label} length={length!} />
       {tasks ? (
-        <div className="grid gap-5 mt-6">
+        <div className="grid gap-5">
           {tasks.map((task) => (
             <BoardCard key={task.title} />
           ))}

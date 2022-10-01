@@ -1,16 +1,18 @@
-import { useState } from "react";
 import SidebarItem from "../ui/sidebar-item";
 import ThemeToggler from "./theme-toggler";
 import { ReactComponent as HideIcon } from "../../assets/icon-hide-sidebar.svg";
 import { ReactComponent as ShowIcon } from "../../assets/icon-show-sidebar.svg";
 
-const Sidebar = () => {
-  const [showSidebar, setShowSidebar] = useState(true);
+type SidebarProps = {
+  showSidebar: boolean;
+  onShowSidebar: (state: boolean) => void;
+};
 
+const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
   return (
     <>
       <aside
-        className={`bg-white dark:bg-dark-gray main-height w-[300px] border-r border-color py-8 flex flex-col justify-between transition ${
+        className={`fixed z-10 bg-white dark:bg-dark-gray main-height w-[300px] border-r border-color py-8 flex flex-col justify-between transition ${
           showSidebar ? "" : "-translate-x-full"
         }`}
       >
@@ -41,19 +43,21 @@ const Sidebar = () => {
             label="Hide Sidebar"
             type="button"
             Icon={HideIcon}
-            onClick={() => setShowSidebar(false)}
+            onClick={() => onShowSidebar(false)}
           />
         </ul>
       </aside>
 
-      <button
-        className="absolute bottom-8 left-0"
-        onClick={() => setShowSidebar(true)}
-      >
-        <div className="bg-main-purple p-[18px] rounded-r-full">
-          <ShowIcon />
-        </div>
-      </button>
+      {!showSidebar && (
+        <button
+          className="fixed bottom-8 left-0 z-10"
+          onClick={() => onShowSidebar(true)}
+        >
+          <div className="bg-main-purple p-[18px] rounded-r-full">
+            <ShowIcon />
+          </div>
+        </button>
+      )}
     </>
   );
 };
