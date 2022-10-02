@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { BoardType, TaskType } from "@type/data";
+import { ColumnType, TaskType } from "@type/data";
 
 export interface TaskState {
   boards: {
     columns: {
+      id: string;
       name: string;
       tasks: TaskType[];
     }[];
@@ -157,6 +158,55 @@ export const taskSlice = createSlice({
         state.boards.push(newBoard);
       }
     },
+    updateBoard: (
+      state,
+      action: PayloadAction<{ currentBoard: string; updatedBoard: any }>
+    ) => {
+      const { currentBoard, updatedBoard } = action.payload;
+
+      // For which board is it updating?
+      const targetBoard = state.boards.find(
+        (board) => board.name === currentBoard
+      );
+
+      if (targetBoard) {
+        // Find the index of the board that's being updated
+        const targetBoardIndex = state.boards.findIndex(
+          (board) => board.name === currentBoard
+        );
+
+        const updatedBoardColumns = {
+          ...updatedBoard,
+          columns: updatedBoard.columns.map((col: ColumnType) => {
+            return {
+              ...col,
+              tasks: col?.tasks?.map((task: TaskType) => {
+                return {
+                  ...task,
+                  status: col.name,
+                };
+              }),
+            };
+          }),
+        };
+
+        state.boards[targetBoardIndex] = updatedBoardColumns;
+      }
+    },
+    deleteBoard: (state, action: PayloadAction<string>) => {
+      const currentBoard = action.payload;
+
+      const targetBoard = state.boards.find(
+        (board) => board.name === currentBoard
+      );
+
+      if (targetBoard) {
+        const targetBoardIndex = state.boards.findIndex(
+          (board) => board.name === currentBoard
+        );
+        state.boards.splice(targetBoardIndex, 1);
+      }
+    },
   },
 });
 
@@ -167,6 +217,8 @@ export const {
   updateTask,
   deleteTask,
   addBoard,
+  updateBoard,
+  deleteBoard,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

@@ -1,7 +1,9 @@
 import { useAppSelector } from "@hooks/useStore";
 import AddBoard from "./add-board";
 import AddTask from "./add-task";
+import DeleteBoard from "./delete-board";
 import DeleteTask from "./delete-task";
+import EditBoard from "./edit-board";
 import EditTask from "./edit-task";
 import ViewTask from "./view-task";
 
@@ -23,6 +25,12 @@ const Modals = () => {
       )}
       {modalState.type === "add-board" && (
         <AddBoard {...modalState} currentBoard={boardTab} />
+      )}
+      {modalState.type === "edit-board" && (
+        <EditBoard {...modalState} currentBoard={boardTab} />
+      )}
+      {modalState.type === "delete-board" && (
+        <DeleteBoard {...modalState} currentBoard={boardTab} />
       )}
     </>
   );
