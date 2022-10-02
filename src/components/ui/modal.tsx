@@ -1,14 +1,14 @@
 import { ReactNode, useRef } from "react";
-import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
-import { closeModal } from "../../store/modal-slice";
+import { useOnClickOutside } from "@hooks/useOnClickOutside";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { closeModal } from "@store/modal-slice";
 
 type ModalProps = {
   children: ReactNode;
 };
 
 const Modal = ({ children }: ModalProps) => {
-  const { type, data } = useAppSelector((state) => state.modal);
+  const { type } = useAppSelector((state) => state.modal);
 
   const dispatch = useAppDispatch();
 

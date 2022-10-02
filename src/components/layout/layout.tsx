@@ -1,8 +1,9 @@
 import { ReactNode, useState } from "react";
 import Header from "./header";
 import Sidebar from "./sidebar";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import Modals from "../modals";
+import { useWindowSize } from "@hooks/useWindowSize";
+import Modals from "@components/modals";
+
 type LayoutProps = {
   children: ReactNode;
 };

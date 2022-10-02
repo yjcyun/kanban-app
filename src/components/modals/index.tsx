@@ -1,4 +1,4 @@
-import { useAppSelector } from "../../hooks/useStore";
+import { useAppSelector } from "@hooks/useStore";
 import AddTask from "./add-task";
 import DeleteTask from "./delete-task";
 import ViewTask from "./view-task";

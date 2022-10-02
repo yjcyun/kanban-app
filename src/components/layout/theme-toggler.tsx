@@ -1,6 +1,6 @@
-import { ReactComponent as MoonIcon } from "../../assets/icon-dark-theme.svg";
-import { ReactComponent as SunIcon } from "../../assets/icon-light-theme.svg";
-import { useTheme } from "../../hooks/useTheme";
+import { ReactComponent as MoonIcon } from "@assets/icon-dark-theme.svg";
+import { ReactComponent as SunIcon } from "@assets/icon-light-theme.svg";
+import { useTheme } from "@hooks/useTheme";
 
 const ThemeToggler = () => {
   const { theme, switchTheme } = useTheme();

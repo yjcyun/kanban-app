@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import { ReactComponent as CaretDownIcon } from "../../assets/icon-chevron-down.svg";
+import { useOnClickOutside } from "@hooks/useOnClickOutside";
+import { ReactComponent as CaretDownIcon } from "@assets/icon-chevron-down.svg";
 
 type SelectProps = {
   options: string[];

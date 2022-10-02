@@ -1,5 +1,5 @@
-import { ReactComponent as CloseIcon } from "../../assets/icon-cross.svg";
-import Button from "../ui/button";
+import { ReactComponent as CloseIcon } from "@assets/icon-cross.svg";
+import Button from "@ui/button";
 
 const Subtasks = () => {
   return (

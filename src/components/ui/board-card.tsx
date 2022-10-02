@@ -1,6 +1,6 @@
-import { useAppDispatch } from "../../hooks/useStore";
-import { openModal } from "../../store/modal-slice";
-import { TaskType } from "../../types/data";
+import { useAppDispatch } from "@hooks/useStore";
+import { openModal } from "@store/modal-slice";
+import { TaskType } from "@type/data";
 
 const BoardCard = (props: TaskType) => {
   const { title, subtasks } = props;

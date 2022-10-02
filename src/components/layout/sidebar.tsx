@@ -1,7 +1,7 @@
-import SidebarItem from "../ui/sidebar-item";
+import { ReactComponent as HideIcon } from "@assets/icon-hide-sidebar.svg";
+import { ReactComponent as ShowIcon } from "@assets/icon-show-sidebar.svg";
+import SidebarItem from "@ui/sidebar-item";
 import ThemeToggler from "./theme-toggler";
-import { ReactComponent as HideIcon } from "../../assets/icon-hide-sidebar.svg";
-import { ReactComponent as ShowIcon } from "../../assets/icon-show-sidebar.svg";
 
 type SidebarProps = {
   showSidebar: boolean;

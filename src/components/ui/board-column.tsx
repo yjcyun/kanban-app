@@ -1,4 +1,4 @@
-import { TaskType } from "../../types/data";
+import { TaskType } from "@type/data";
 import BoardCard from "./board-card";
 import ColumnTitle from "./column-title";
 import NewColumn from "./new-column";

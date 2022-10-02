@@ -1,13 +1,13 @@
 import { useForm, useFieldArray, SubmitHandler } from "react-hook-form";
-import Modal from "../ui/modal";
-import ModalTitle from "../ui/modal-title";
-import { ReactComponent as CloseIcon } from "../../assets/icon-cross.svg";
-import Button from "../ui/button";
-import Select from "../form/select";
-import { useAppSelector } from "../../hooks/useStore";
-import FormControl from "../form/form-control";
-import { TaskType } from "../../types/data";
 import { nanoid } from "@reduxjs/toolkit";
+import { ReactComponent as CloseIcon } from "@assets/icon-cross.svg";
+import Modal from "@ui/modal";
+import ModalTitle from "@ui/modal-title";
+import Button from "@ui/button";
+import Select from "@components/form/select";
+import FormControl from "@components/form/form-control";
+import { useAppSelector } from "@hooks/useStore";
+import { TaskType } from "@type/data";
 
 const AddTask = () => {
   const { boardColumns } = useAppSelector((state) => state.tasks);

@@ -1,5 +1,5 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { ReactComponent as BoardIcon } from "../../assets/icon-board.svg";
+import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
 
 type SidebarItemProps = {
   label: string;

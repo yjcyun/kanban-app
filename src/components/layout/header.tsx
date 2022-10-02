@@ -1,13 +1,13 @@
-import { ReactComponent as Logo } from "../../assets/logo-mobile.svg";
-import { ReactComponent as LogoLight } from "../../assets/logo-light.svg";
-import { ReactComponent as LogoDark } from "../../assets/logo-dark.svg";
-import { ReactComponent as DownIcon } from "../../assets/icon-chevron-down.svg";
-import { ReactComponent as VerticalIcon } from "../../assets/icon-vertical-ellipsis.svg";
-import { useWindowSize } from "../../hooks/useWindowSize";
-import Button from "../ui/button";
-import { useTheme } from "../../hooks/useTheme";
-import { openModal } from "../../store/modal-slice";
-import { useAppDispatch } from "../../hooks/useStore";
+import { ReactComponent as Logo } from "@assets/logo-mobile.svg";
+import { ReactComponent as LogoLight } from "@assets/logo-light.svg";
+import { ReactComponent as LogoDark } from "@assets/logo-dark.svg";
+import { ReactComponent as DownIcon } from "@assets/icon-chevron-down.svg";
+import { ReactComponent as VerticalIcon } from "@assets/icon-vertical-ellipsis.svg";
+import { useWindowSize } from "@hooks/useWindowSize";
+import { useTheme } from "@hooks/useTheme";
+import { useAppDispatch } from "@hooks/useStore";
+import { openModal } from "@store/modal-slice";
+import Button from "@ui/button";
 
 const Header = () => {
   const { width } = useWindowSize();

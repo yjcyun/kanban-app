@@ -1,7 +1,7 @@
-import { TaskType } from "../../types/data";
-import Button from "../ui/button";
-import Modal from "../ui/modal";
-import ModalTitle from "../ui/modal-title";
+import { TaskType } from "@type/data";
+import Button from "@ui/button";
+import Modal from "@ui/modal";
+import ModalTitle from "@ui/modal-title";
 
 type DeleteTaskProps = {
   data: TaskType;

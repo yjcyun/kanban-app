@@ -1,5 +1,4 @@
-import { ChangeEvent } from "react";
-import { ReactComponent as CheckIcon } from "../../assets/icon-check.svg";
+import { ReactComponent as CheckIcon } from "@assets/icon-check.svg";
 
 type SubtaskCheckboxProps = {
   label: string;

@@ -1,5 +1,5 @@
-import BoardColumn from "../components/ui/board-column";
-import { useAppSelector } from "../hooks/useStore";
+import BoardColumn from "@ui/board-column";
+import { useAppSelector } from "@hooks/useStore";
 
 const BoardPage = () => {
   const { boards } = useAppSelector((state) => state.tasks);

@@ -1,10 +1,10 @@
-import "./style/global.css";
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import BoardPage from "./pages/board-page";
-import Layout from "./components/layout/layout";
-import { getLocalData, setBoardColumns } from "./store/task-slice";
 import { useDispatch } from "react-redux";
+import BoardPage from "@pages/board-page";
+import Layout from "@components/layout/layout";
+import { getLocalData, setBoardColumns } from "@store/task-slice";
+import "@style/global.css";
 
 const App = () => {
   const dispatch = useDispatch();
