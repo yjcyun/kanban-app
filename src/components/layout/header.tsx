@@ -6,11 +6,17 @@ import { ReactComponent as VerticalIcon } from "../../assets/icon-vertical-ellip
 import { useWindowSize } from "../../hooks/useWindowSize";
 import Button from "../ui/button";
 import { useTheme } from "../../hooks/useTheme";
+import { openModal } from "../../store/modal-slice";
+import { useAppDispatch } from "../../hooks/useStore";
 
 const Header = () => {
   const { width } = useWindowSize();
   const { theme } = useTheme();
+  const dispatch = useAppDispatch();
 
+  const onAddTask = () => {
+    dispatch(openModal({ type: "add-task" }));
+  };
   return (
     <header className="flex items-center bg-white dark:bg-dark-gray h-16 pr-4 w-full">
       <div className="sm:border-r border-light-lines dark:border-dark-lines h-full flex items-center sm:pr-6 pl-4 sm:w-[300px] shrink-0">
@@ -33,7 +39,7 @@ const Header = () => {
         </div>
         <div className="flex items-center gap-4">
           <div className="w-12 sm:w-[164px]">
-            <Button buttonType="primary">
+            <Button buttonType="primary" onClick={onAddTask}>
               {width! > 640 ? "+Add New Task" : "+"}
             </Button>
           </div>

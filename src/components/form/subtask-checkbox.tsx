@@ -24,7 +24,7 @@ const SubtaskCheckbox = ({
         name={label}
       />
       <div
-        className={`w-4 h-4 rounded-sm mr-4 border border-medium-gray/25 relative ${
+        className={`w-4 h-4 rounded-sm mr-4 border border-medium-gray/25 relative flex-shrink-0 ${
           isChecked ? "bg-main-purple border-main-purple" : "bg-white"
         }`}
       >

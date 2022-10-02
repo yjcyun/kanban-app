@@ -5,7 +5,6 @@ import BoardPage from "./pages/board-page";
 import Layout from "./components/layout/layout";
 import { getLocalData, setBoardColumns } from "./store/task-slice";
 import { useDispatch } from "react-redux";
-import data from "./data.json";
 
 const App = () => {
   const dispatch = useDispatch();

@@ -1,11 +1,13 @@
 import { useState, useRef } from "react";
 import Modal from "../ui/modal";
 import { Subtasks, TaskType } from "../../types/data";
-import SubtaskCheckbox from "../ui/subtask-checkbox";
-import Select from "../ui/select";
-import { useAppSelector } from "../../hooks/useStore";
+import SubtaskCheckbox from "../form/subtask-checkbox";
+import Select from "../form/select";
+import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
 import { ReactComponent as VerticalIcon } from "../../assets/icon-vertical-ellipsis.svg";
 import { useOnClickOutside } from "../../hooks/useOnClickOutside";
+import ModalTitle from "../ui/modal-title";
+import { openModal } from "../../store/modal-slice";
 type ViewTaskProps = {
   data: TaskType;
 };
@@ -20,6 +22,7 @@ const ViewTask = ({ data }: ViewTaskProps) => {
   const [dropMore, setDropMore] = useState(false);
 
   const { boardColumns } = useAppSelector((state) => state.tasks);
+  const dispatch = useAppDispatch();
 
   // Close view more dropbox
   const ref = useRef(null);
@@ -36,11 +39,16 @@ const ViewTask = ({ data }: ViewTaskProps) => {
     setTasks({ ...tasks, subtasks: copiedNewSubtasks });
     // TODO: Update redux state
   };
+
+  const onDeleteTask = () => {
+    dispatch(openModal({ type: "delete-task" }));
+  };
+
   return (
     <Modal>
       <div className="space-y-6">
         <div className="flex items-center justify-between gap-6">
-          <h2 className="heading-lg text-black">{title}</h2>
+          <ModalTitle title={title} />
           <button className="relative" ref={ref}>
             <VerticalIcon onClick={() => setDropMore(!dropMore)} />
             <div
@@ -49,7 +57,9 @@ const ViewTask = ({ data }: ViewTaskProps) => {
               }`}
             >
               <p>Edit Task</p>
-              <p className="text-red">Delete Task</p>
+              <p className="text-red" onClick={onDeleteTask}>
+                Delete Task
+              </p>
             </div>
           </button>
         </div>

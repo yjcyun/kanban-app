@@ -3,7 +3,7 @@ import { TaskType } from "../types/data";
 
 export interface ModalState {
   type: string;
-  data: TaskType | null;
+  data?: TaskType | null;
 }
 
 const initialState: ModalState = {
@@ -21,7 +21,6 @@ export const modalSlice = createSlice({
     },
     closeModal: (state) => {
       state.type = "";
-      state.data = null;
     },
   },
 });
