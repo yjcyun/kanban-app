@@ -112,10 +112,48 @@ export const taskSlice = createSlice({
         );
       }
     },
+    deleteTask: (
+      state,
+      action: PayloadAction<{
+        currentBoard: string;
+        currentTask: TaskType;
+      }>
+    ) => {
+      const { currentBoard, currentTask } = action.payload;
+
+      const targetBoard = state.boards.find(
+        (board) => board.name === currentBoard
+      );
+
+      if (targetBoard) {
+        // Find the index of the board of the currently selected board
+        const targetBoardIndex = state.boards.findIndex(
+          (board) => board.name === currentBoard
+        );
+        // Find the index of the column of the task being deleted
+        const targetColumnIndex = targetBoard.columns.findIndex((col) =>
+          col.tasks.find((task) => task.id === currentTask.id)
+        );
+        // Find the index of the task being deleted
+        const targetTaskIndex = targetBoard.columns[
+          targetColumnIndex
+        ].tasks.findIndex((task) => task.id === currentTask.id);
+        // Remove targetted task
+        state.boards[targetBoardIndex].columns[targetColumnIndex].tasks.splice(
+          targetTaskIndex,
+          1
+        );
+      }
+    },
   },
 });
 
-export const { getLocalData, setBoardColumns, addTask, updateTask } =
-  taskSlice.actions;
+export const {
+  getLocalData,
+  setBoardColumns,
+  addTask,
+  updateTask,
+  deleteTask,
+} = taskSlice.actions;
 
 export default taskSlice.reducer;

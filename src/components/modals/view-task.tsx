@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import Modal from "@ui/modal";
-import { Subtasks, TaskType } from "@type/data";
+import { ModalType, Subtasks, TaskType } from "@type/data";
 import SubtaskCheckbox from "@components/form/subtask-checkbox";
 import Select from "@components/form/select";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
@@ -10,18 +10,13 @@ import ModalTitle from "@ui/modal-title";
 import { openModal } from "@store/modal-slice";
 import { updateTask } from "@store/task-slice";
 
-type ViewTaskProps = {
-  data: TaskType;
-  currentBoard: string;
-};
-
 const completedSubtasks = (subtasks: Subtasks) =>
   subtasks.filter((task) => task.isCompleted).length;
 
-const ViewTask = ({ data, currentBoard }: ViewTaskProps) => {
-  const { description, title, status, subtasks } = data;
+const ViewTask = ({ data, currentBoard }: ModalType) => {
+  const { description, title, status, subtasks } = data!;
 
-  const [tasks, setTasks] = useState(data);
+  const [tasks, setTasks] = useState(data!);
   const [dropMore, setDropMore] = useState(false);
 
   const { boardColumns } = useAppSelector((state) => state.tasks);

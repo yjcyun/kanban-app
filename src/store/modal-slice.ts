@@ -16,11 +16,13 @@ export const modalSlice = createSlice({
   initialState,
   reducers: {
     openModal: (state, action: PayloadAction<ModalState>) => {
-      state.type = action.payload.type;
-      state.data = action.payload.data;
+      return { ...state, ...action.payload };
     },
     closeModal: (state) => {
-      state.type = "";
+      return {
+        ...state,
+        type: "",
+      };
     },
   },
 });

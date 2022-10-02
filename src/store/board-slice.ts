@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-export type ModalState = string;
+export type BoardState = string;
 
-const initialState: ModalState = "";
+const initialState: BoardState = "";
 
 export const boardSlice = createSlice({
   name: "board",

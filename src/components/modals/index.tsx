@@ -4,16 +4,18 @@ import DeleteTask from "./delete-task";
 import ViewTask from "./view-task";
 
 const Modals = () => {
-  const { type, data } = useAppSelector((state) => state.modal);
+  const modalState = useAppSelector((state) => state.modal);
   const boardTab = useAppSelector((state) => state.boardTab);
 
   return (
     <>
-      {type === "view-task" && (
-        <ViewTask data={data!} currentBoard={boardTab} />
+      {modalState.type === "view-task" && (
+        <ViewTask {...modalState} currentBoard={boardTab} />
       )}
-      {type === "add-task" && <AddTask currentBoard={boardTab} />}
-      {type === "delete-task" && <DeleteTask data={data!} />}
+      {modalState.type === "add-task" && <AddTask currentBoard={boardTab} />}
+      {modalState.type === "delete-task" && (
+        <DeleteTask {...modalState} currentBoard={boardTab} />
+      )}
     </>
   );
 };
