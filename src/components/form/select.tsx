@@ -5,9 +5,10 @@ import { ReactComponent as CaretDownIcon } from "../../assets/icon-chevron-down.
 type SelectProps = {
   options: string[];
   currentOption: string;
+  onSetStatus: (status: string) => void;
 };
 
-const Select = ({ options, currentOption }: SelectProps) => {
+const Select = ({ options, currentOption, onSetStatus }: SelectProps) => {
   const [isDropped, setIsDropped] = useState(false);
   const [selectedOption, setSelectedOption] = useState(currentOption);
 
@@ -18,6 +19,7 @@ const Select = ({ options, currentOption }: SelectProps) => {
   const onSelectChange = (term: string) => {
     setSelectedOption(term);
     setIsDropped(false);
+    onSetStatus(term);
   };
 
   return (

@@ -22,6 +22,7 @@ const BoardColumn = ({ label, length, tasks }: BoardColumnProps) => {
               title={task.title}
               description={task.description}
               status={task.status}
+              id={task.id}
             />
           ))}
         </div>

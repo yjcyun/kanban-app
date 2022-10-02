@@ -6,7 +6,6 @@ import ViewTask from "./view-task";
 const Modals = () => {
   const { type, data } = useAppSelector((state) => state.modal);
 
-  console.log(data);
   return (
     <>
       {type === "view-task" && <ViewTask data={data!} />}

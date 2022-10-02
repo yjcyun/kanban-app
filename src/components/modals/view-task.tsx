@@ -80,7 +80,11 @@ const ViewTask = ({ data }: ViewTaskProps) => {
         </div>
         <div>
           <h3 className="body-md mb-4">Current Status</h3>
-          <Select options={boardColumns} currentOption={status} />
+          <Select
+            options={boardColumns}
+            currentOption={status}
+            onSetStatus={() => null}
+          />
         </div>
       </div>
     </Modal>

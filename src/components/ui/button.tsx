@@ -11,7 +11,7 @@ const Button = ({ buttonType, size = "small", ...props }: ButtonProps) => {
   const mapTypeStyle = () => {
     switch (buttonType) {
       case "secondary":
-        return "bg-main-purple/10 text-main-purple hover:bg-main-purple/25 dark:bg-white dark:text-main-purple dark:hover:bg-white";
+        return "bg-main-purple/10 text-main-purple hover:bg-main-purple/25 dark:bg-white dark:text-main-purple dark:hover:bg-white disabled:hover:bg-main-purple/10";
       case "destructive":
         return "bg-red text-white hover:bg-red-hover";
       case "primary":
@@ -32,7 +32,7 @@ const Button = ({ buttonType, size = "small", ...props }: ButtonProps) => {
 
   return (
     <button
-      className={`rounded-3xl w-full ${mapSizeStyle()} ${mapTypeStyle()}`}
+      className={`rounded-3xl w-full disabled:text-medium-gray/50 disabled:cursor-not-allowed ${mapSizeStyle()} ${mapTypeStyle()}`}
       {...props}
     />
   );
