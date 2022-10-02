@@ -1,6 +1,7 @@
 import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { selectTab } from "@store/board-slice";
+import { setBoardColumns } from "@store/task-slice";
 
 type SidebarItemProps = {
   defaultTab?: boolean;
@@ -68,6 +69,7 @@ const SidebarItem = ({
 
   const onSelectTab = () => {
     dispatch(selectTab(label));
+    dispatch(setBoardColumns(label));
   };
 
   return (

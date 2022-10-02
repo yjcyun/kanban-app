@@ -6,11 +6,18 @@ import ModalTitle from "@ui/modal-title";
 import Button from "@ui/button";
 import Select from "@components/form/select";
 import FormControl from "@components/form/form-control";
-import { useAppSelector } from "@hooks/useStore";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { TaskType } from "@type/data";
+import { addTask } from "@store/task-slice";
+import { closeModal } from "@store/modal-slice";
 
-const AddTask = () => {
+type AddTaskProps = {
+  currentBoard: string;
+};
+
+const AddTask = ({ currentBoard }: AddTaskProps) => {
   const { boardColumns } = useAppSelector((state) => state.tasks);
+  const dispatch = useAppDispatch();
 
   const {
     register,
@@ -36,7 +43,8 @@ const AddTask = () => {
   });
 
   const onSubmit: SubmitHandler<TaskType> = (data) => {
-    console.log(data);
+    dispatch(addTask({ currentBoard, newTask: data }));
+    dispatch(closeModal());
   };
 
   const onAddSubtask = () => {

@@ -18,8 +18,8 @@ const Select = ({ options, currentOption, onSetStatus }: SelectProps) => {
 
   const onSelectChange = (term: string) => {
     setSelectedOption(term);
-    setIsDropped(false);
     onSetStatus(term);
+    setIsDropped(false);
   };
 
   return (

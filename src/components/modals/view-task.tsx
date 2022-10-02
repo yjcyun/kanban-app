@@ -1,21 +1,24 @@
 import { useState, useRef } from "react";
-import Modal from "../ui/modal";
-import { Subtasks, TaskType } from "../../types/data";
-import SubtaskCheckbox from "../form/subtask-checkbox";
-import Select from "../form/select";
-import { useAppDispatch, useAppSelector } from "../../hooks/useStore";
-import { ReactComponent as VerticalIcon } from "../../assets/icon-vertical-ellipsis.svg";
-import { useOnClickOutside } from "../../hooks/useOnClickOutside";
-import ModalTitle from "../ui/modal-title";
-import { openModal } from "../../store/modal-slice";
+import Modal from "@ui/modal";
+import { Subtasks, TaskType } from "@type/data";
+import SubtaskCheckbox from "@components/form/subtask-checkbox";
+import Select from "@components/form/select";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { ReactComponent as VerticalIcon } from "@assets/icon-vertical-ellipsis.svg";
+import { useOnClickOutside } from "@hooks/useOnClickOutside";
+import ModalTitle from "@ui/modal-title";
+import { openModal } from "@store/modal-slice";
+import { updateTask } from "@store/task-slice";
+
 type ViewTaskProps = {
   data: TaskType;
+  currentBoard: string;
 };
 
 const completedSubtasks = (subtasks: Subtasks) =>
   subtasks.filter((task) => task.isCompleted).length;
 
-const ViewTask = ({ data }: ViewTaskProps) => {
+const ViewTask = ({ data, currentBoard }: ViewTaskProps) => {
   const { description, title, status, subtasks } = data;
 
   const [tasks, setTasks] = useState(data);
@@ -37,7 +40,24 @@ const ViewTask = ({ data }: ViewTaskProps) => {
     };
 
     setTasks({ ...tasks, subtasks: copiedNewSubtasks });
-    // TODO: Update redux state
+    dispatch(
+      updateTask({
+        currentBoard,
+        updatedTask: { ...tasks, subtasks: copiedNewSubtasks },
+        prevTask: tasks,
+      })
+    );
+  };
+
+  const onStatusChange = (status: string) => {
+    setTasks({ ...tasks, status });
+    dispatch(
+      updateTask({
+        currentBoard,
+        updatedTask: { ...tasks, status },
+        prevTask: tasks,
+      })
+    );
   };
 
   const onDeleteTask = () => {
@@ -83,7 +103,7 @@ const ViewTask = ({ data }: ViewTaskProps) => {
           <Select
             options={boardColumns}
             currentOption={status}
-            onSetStatus={() => null}
+            onSetStatus={onStatusChange}
           />
         </div>
       </div>

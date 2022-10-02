@@ -3,17 +3,23 @@ import BoardColumn from "@ui/board-column";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { selectTab } from "@store/board-slice";
 
-const BoardPage = () => {
+const MainBoard = () => {
   const { boards } = useAppSelector((state) => state.tasks);
   const boardTab = useAppSelector((state) => state.boardTab);
+  const currentBoard = boards.find((board) => board.name === boardTab);
+
   const dispatch = useAppDispatch();
 
-  // Set default boardTab on load
   useEffect(() => {
-    if (boards.length > 0) {
+    // Set default boardTab on load
+    if (boards.length > 0 && !currentBoard) {
       dispatch(selectTab(boards[0].name));
     }
-  }, [dispatch, boards]);
+    // fetch from local storage
+    else if (currentBoard) {
+      dispatch(selectTab(currentBoard.name));
+    }
+  }, [dispatch, boards, currentBoard]);
 
   if (boards.length === 0) {
     return <div>Loading</div>;
@@ -39,4 +45,4 @@ const BoardPage = () => {
   );
 };
 
-export default BoardPage;
+export default MainBoard;
