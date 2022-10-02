@@ -13,3 +13,15 @@ export type TaskType = {
 export interface ModalType extends ModalState {
   currentBoard: string;
 }
+
+export interface ColumnType {
+  id: string;
+  name?: string;
+  tasks?: TaskType[];
+}
+
+export interface BoardType {
+  id: string;
+  name: string;
+  columns?: ColumnType[];
+}

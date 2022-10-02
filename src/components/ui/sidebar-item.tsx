@@ -1,6 +1,7 @@
 import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { selectTab } from "@store/board-slice";
+import { openModal } from "@store/modal-slice";
 import { setBoardColumns } from "@store/task-slice";
 
 type SidebarItemProps = {
@@ -68,8 +69,13 @@ const SidebarItem = ({
   const activeTab = boardTab ? boardTab === label : defaultTab;
 
   const onSelectTab = () => {
-    dispatch(selectTab(label));
-    dispatch(setBoardColumns(label));
+    if (highlight) {
+      console.log(highlight);
+      dispatch(openModal({ type: "add-board" }));
+    } else {
+      dispatch(selectTab(label));
+      dispatch(setBoardColumns(label));
+    }
   };
 
   return (

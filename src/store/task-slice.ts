@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import { TaskType } from "@type/data";
+import { BoardType, TaskType } from "@type/data";
 
 export interface TaskState {
   boards: {
@@ -145,6 +145,18 @@ export const taskSlice = createSlice({
         );
       }
     },
+    addBoard: (
+      state,
+      action: PayloadAction<{ currentBoard: string; newBoard: any }>
+    ) => {
+      const { currentBoard, newBoard } = action.payload;
+
+      if (
+        currentBoard.toLocaleLowerCase() !== newBoard.name.toLocaleLowerCase()
+      ) {
+        state.boards.push(newBoard);
+      }
+    },
   },
 });
 
@@ -154,6 +166,7 @@ export const {
   addTask,
   updateTask,
   deleteTask,
+  addBoard,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

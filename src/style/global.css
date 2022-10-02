@@ -74,9 +74,9 @@
     @apply text-black dark:text-white;
   }
   .input-field {
-    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple placeholder:text-black/25;
+    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple placeholder:text-black/25 text-black;
   }
   .textarea-field {
-    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple resize-none h-28 placeholder:text-black/25;
+    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple resize-none h-28 placeholder:text-black/25 text-black;
   }
 }

@@ -31,12 +31,7 @@ const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
                 defaultTab={index === 0}
               />
             ))}
-            <SidebarItem
-              label="+ Create New Board"
-              highlight
-              type="button"
-              Icon={BoardIcon}
-            />
+            <SidebarItem label="+ Create New Board" highlight type="board" />
           </ul>
         </div>
         <ul>
