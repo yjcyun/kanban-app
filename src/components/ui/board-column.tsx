@@ -7,12 +7,13 @@ type BoardColumnProps = {
   label: string;
   length?: number;
   tasks?: TaskType[];
+  id?: number;
 };
 
-const BoardColumn = ({ label, length, tasks }: BoardColumnProps) => {
+const BoardColumn = ({ label, length, tasks, id }: BoardColumnProps) => {
   return (
     <div className="w-[280px] flex flex-col h-full">
-      <ColumnTitle label={label.toLowerCase()} length={length!} />
+      <ColumnTitle label={label.toLowerCase()} length={length!} id={id!} />
       {tasks ? (
         <div className="grid gap-5">
           {tasks.map((task) => (

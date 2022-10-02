@@ -1,12 +1,12 @@
 import { useState, useRef } from "react";
-import Modal from "@ui/modal";
-import { ModalType, Subtasks, TaskType } from "@type/data";
+import { ModalType, Subtasks } from "@type/data";
 import SubtaskCheckbox from "@components/form/subtask-checkbox";
 import Select from "@components/form/select";
-import { useAppDispatch, useAppSelector } from "@hooks/useStore";
-import { ReactComponent as VerticalIcon } from "@assets/icon-vertical-ellipsis.svg";
-import { useOnClickOutside } from "@hooks/useOnClickOutside";
+import Modal from "@ui/modal";
 import ModalTitle from "@ui/modal-title";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { useOnClickOutside } from "@hooks/useOnClickOutside";
+import { ReactComponent as VerticalIcon } from "@assets/icon-vertical-ellipsis.svg";
 import { openModal } from "@store/modal-slice";
 import { updateTask } from "@store/task-slice";
 
@@ -55,6 +55,10 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
     );
   };
 
+  const onEditTask = () => {
+    dispatch(openModal({ type: "edit-task" }));
+  };
+
   const onDeleteTask = () => {
     dispatch(openModal({ type: "delete-task" }));
   };
@@ -64,14 +68,18 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
       <div className="space-y-6">
         <div className="flex items-center justify-between gap-6">
           <ModalTitle title={title} />
-          <button className="relative" ref={ref}>
-            <VerticalIcon onClick={() => setDropMore(!dropMore)} />
+          <button
+            className="relative px-3 -mr-3 group"
+            ref={ref}
+            onClick={() => setDropMore(!dropMore)}
+          >
+            <VerticalIcon className="group-hover:fill-main-purple" />
             <div
               className={`absolute w-[192px] mt-6 left-0 -translate-x-1/2 shadow-dropbox rounded-lg p-4 bg-white body-lg text-left space-y-4 ${
                 dropMore ? "block" : "hidden"
               }`}
             >
-              <p>Edit Task</p>
+              <p onClick={onEditTask}>Edit Task</p>
               <p className="text-red" onClick={onDeleteTask}>
                 Delete Task
               </p>

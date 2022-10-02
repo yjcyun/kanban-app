@@ -32,12 +32,13 @@ const MainBoard = () => {
 
   return (
     <>
-      {boards[selectedBoardIndex]?.columns.map((column) => (
+      {boards[selectedBoardIndex]?.columns.map((column, index) => (
         <BoardColumn
           tasks={column.tasks}
           label={column.name}
           length={column.tasks.length}
           key={column.name}
+          id={index}
         />
       ))}
       <BoardColumn label="" />

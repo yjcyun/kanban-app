@@ -1,16 +1,17 @@
 type ColumnTitleProps = {
   label: string;
   length: number;
+  id: number;
 };
 
-const ColumnTitle = ({ label, length }: ColumnTitleProps) => {
+const ColumnTitle = ({ label, length, id }: ColumnTitleProps) => {
   const mapLabelColour = () => {
-    switch (label) {
-      case "todo":
+    switch (id) {
+      case 0:
         return "bg-[#49C4E5]";
-      case "doing":
+      case 1:
         return "bg-[#8471F2]";
-      case "done":
+      case 2:
         return "bg-[#67E2AE]";
     }
   };
