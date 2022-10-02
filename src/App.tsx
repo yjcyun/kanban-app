@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import BoardPage from "@pages/board-page";
 import Layout from "@components/layout/layout";
+import { useAppDispatch } from "@hooks/useStore";
 import { getLocalData, setBoardColumns } from "@store/task-slice";
 import "@style/global.css";
 
 const App = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   useEffect(() => {
     const fetchData = async () => {

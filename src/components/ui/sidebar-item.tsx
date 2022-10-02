@@ -1,25 +1,30 @@
-import { NavLink, useLocation } from "react-router-dom";
 import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { selectTab } from "@store/board-slice";
 
 type SidebarItemProps = {
-  label: string;
-  to?: string;
+  defaultTab?: boolean;
   highlight?: boolean;
   Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
-  type: "link" | "button";
-  onClick?: () => void;
+  label: string;
+  onHideSidebar?: () => void;
+  type: "board" | "button";
 };
 
 interface ItemProps
-  extends Pick<SidebarItemProps, "label" | "highlight" | "Icon"> {
-  isActiveLink?: boolean;
+  extends Pick<
+    SidebarItemProps,
+    "label" | "highlight" | "Icon" | "defaultTab"
+  > {
+  isSelected?: boolean;
 }
 
 const Item = ({
   highlight = false,
   Icon,
-  isActiveLink = false,
+  isSelected = false,
   label,
+  defaultTab,
 }: ItemProps) => {
   const IconComponent = Icon!;
 
@@ -27,7 +32,7 @@ const Item = ({
     <div
       className={[
         "heading-md flex items-center gap-3 whitespace-nowrap py-[14px] pl-6  rounded-r-full group-hover:text-main-purple ",
-        isActiveLink
+        isSelected
           ? "bg-main-purple text-white group-hover:text-white"
           : "group-hover:bg-main-purple/10",
         highlight ? "text-main-purple" : "",
@@ -37,9 +42,9 @@ const Item = ({
     >
       <IconComponent
         className={[
-          highlight && !isActiveLink ? "fill-main-purple" : "",
-          (isActiveLink && highlight) || isActiveLink ? "fill-white " : "",
-          isActiveLink ? "" : "group-hover:fill-main-purple",
+          highlight && !isSelected ? "fill-main-purple" : "",
+          (isSelected && highlight) || isSelected ? "fill-white " : "",
+          isSelected ? "" : "group-hover:fill-main-purple",
         ]
           .filter(Boolean)
           .join(" ")}
@@ -50,29 +55,35 @@ const Item = ({
 };
 
 const SidebarItem = ({
-  label,
-  to,
+  defaultTab,
   highlight = false,
   Icon,
+  label,
+  onHideSidebar,
   type,
-  onClick,
 }: SidebarItemProps) => {
-  const location = useLocation();
-  const isActiveLink = location.pathname === to;
+  const boardTab = useAppSelector((state) => state.boardTab);
+  const dispatch = useAppDispatch();
+  const activeTab = boardTab ? boardTab === label : defaultTab;
+
+  const onSelectTab = () => {
+    dispatch(selectTab(label));
+  };
 
   return (
     <li className="group mr-6">
-      {type === "link" ? (
-        <NavLink to={to!}>
+      {type === "board" ? (
+        <button className="w-full" onClick={onSelectTab}>
           <Item
-            isActiveLink={isActiveLink}
             label={label}
             highlight={highlight}
             Icon={BoardIcon}
+            isSelected={activeTab}
+            defaultTab={defaultTab}
           />
-        </NavLink>
+        </button>
       ) : (
-        <button className="w-full" onClick={onClick}>
+        <button className="w-full" onClick={onHideSidebar}>
           <Item label={label} highlight={highlight} Icon={Icon} />
         </button>
       )}

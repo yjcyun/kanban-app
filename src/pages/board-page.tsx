@@ -1,20 +1,32 @@
+import { useEffect } from "react";
 import BoardColumn from "@ui/board-column";
-import { useAppSelector } from "@hooks/useStore";
+import { useAppDispatch, useAppSelector } from "@hooks/useStore";
+import { selectTab } from "@store/board-slice";
 
 const BoardPage = () => {
   const { boards } = useAppSelector((state) => state.tasks);
+  const boardTab = useAppSelector((state) => state.boardTab);
+  const dispatch = useAppDispatch();
+
+  // Set default boardTab on load
+  useEffect(() => {
+    if (boards.length > 0) {
+      dispatch(selectTab(boards[0].name));
+    }
+  }, [dispatch, boards]);
 
   if (boards.length === 0) {
     return <div>Loading</div>;
   }
 
-  const platformLaunch = boards.filter(
-    (board) => board.name === "Platform Launch"
-  )[0].columns;
+  // Find the selected board index
+  const selectedBoardIndex = boards.findIndex(
+    (board) => board.name === boardTab
+  );
 
   return (
     <>
-      {platformLaunch.map((column) => (
+      {boards[selectedBoardIndex]?.columns.map((column) => (
         <BoardColumn
           tasks={column.tasks}
           label={column.name}

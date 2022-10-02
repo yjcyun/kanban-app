@@ -1,7 +1,9 @@
 import { ReactComponent as HideIcon } from "@assets/icon-hide-sidebar.svg";
 import { ReactComponent as ShowIcon } from "@assets/icon-show-sidebar.svg";
+import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
 import SidebarItem from "@ui/sidebar-item";
 import ThemeToggler from "./theme-toggler";
+import { useAppSelector } from "@hooks/useStore";
 
 type SidebarProps = {
   showSidebar: boolean;
@@ -9,6 +11,8 @@ type SidebarProps = {
 };
 
 const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
+  const { boards } = useAppSelector((state) => state.tasks);
+
   return (
     <>
       <aside
@@ -19,21 +23,19 @@ const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
         <div>
           <h4 className="heading-sm uppercase pl-6 mb-5">all boards (3)</h4>
           <ul>
+            {boards.map((board, index) => (
+              <SidebarItem
+                label={board.name}
+                type="board"
+                key={board.id}
+                defaultTab={index === 0}
+              />
+            ))}
             <SidebarItem
-              to="/platform-launch"
-              label="Platform Launch"
-              type="link"
-            />
-            <SidebarItem
-              to="/marketing-plan"
-              label="Marketing Plan"
-              type="link"
-            />
-            <SidebarItem
-              to="/new-board"
               label="+ Create New Board"
               highlight
-              type="link"
+              type="button"
+              Icon={BoardIcon}
             />
           </ul>
         </div>
@@ -43,7 +45,7 @@ const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
             label="Hide Sidebar"
             type="button"
             Icon={HideIcon}
-            onClick={() => onShowSidebar(false)}
+            onHideSidebar={() => onShowSidebar(false)}
           />
         </ul>
       </aside>

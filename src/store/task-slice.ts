@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+
 import { TaskType } from "@type/data";
 
 export interface TaskState {
@@ -8,6 +9,7 @@ export interface TaskState {
       tasks: TaskType[];
     }[];
     name: string;
+    id: string;
   }[];
   boardColumns: string[];
 }
@@ -36,10 +38,34 @@ export const taskSlice = createSlice({
 
       state.boardColumns = selectedBoardColumns;
     },
-    editTask: (state, action) => {},
+    addTask: (
+      state,
+      action: PayloadAction<{ currentBoard: string; newTask: TaskType }>
+    ) => {
+      const { currentBoard, newTask } = action.payload;
+
+      const boardsSnapshot = state.boards;
+
+      const existingBoard = boardsSnapshot.find(
+        (board) => board.name === currentBoard
+      );
+
+      if (existingBoard) {
+        const targetBoardIndex = boardsSnapshot.findIndex(
+          (board) => board.name === currentBoard
+        );
+        const targetColumnIndex = existingBoard.columns.findIndex(
+          (column) => column.name === newTask.status
+        );
+
+        boardsSnapshot[targetBoardIndex].columns[targetColumnIndex].tasks.push(
+          newTask
+        );
+      }
+    },
   },
 });
 
-export const { getLocalData, setBoardColumns } = taskSlice.actions;
+export const { getLocalData, setBoardColumns, addTask } = taskSlice.actions;
 
 export default taskSlice.reducer;
