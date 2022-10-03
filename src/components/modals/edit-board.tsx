@@ -6,7 +6,7 @@ import { BoardType, ModalType } from "@type/data";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { updateBoard } from "@store/task-slice";
 
-const EditBoard = ({ currentBoard }: ModalType) => {
+const EditBoard = ({ currentBoard, type }: ModalType) => {
   const dispatch = useAppDispatch();
   const boardData = useAppSelector((state) => state.tasks);
   const boardTab = useAppSelector((state) => state.boardTab);
@@ -32,7 +32,9 @@ const EditBoard = ({ currentBoard }: ModalType) => {
 
   return (
     <Modal>
-      <ModalTitle title="Edit Board" />
+      <ModalTitle
+        title={type === "edit-board" ? "Edit Board" : "Add New Column"}
+      />
       <FormProvider {...methods}>
         <BoardForm mode="edit" onSubmitHandler={onSubmit} />
       </FormProvider>

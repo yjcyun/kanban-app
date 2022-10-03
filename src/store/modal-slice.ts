@@ -1,10 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { TaskType } from "@type/data";
-
-export interface ModalState {
-  type: string;
-  data?: TaskType | null;
-}
+import { ModalState } from "@type/data";
 
 const initialState: ModalState = {
   type: "",

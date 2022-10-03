@@ -8,10 +8,13 @@ const ColumnTitle = ({ label, length, id }: ColumnTitleProps) => {
   const mapLabelColour = () => {
     switch (id) {
       case 0:
+      case 3:
         return "bg-[#49C4E5]";
       case 1:
+      case 4:
         return "bg-[#8471F2]";
       case 2:
+      case 5:
         return "bg-[#67E2AE]";
     }
   };
@@ -22,7 +25,7 @@ const ColumnTitle = ({ label, length, id }: ColumnTitleProps) => {
         className={`w-[15px] h-[15px] rounded-full ${mapLabelColour()}`}
       ></div>
       <h3 className="heading-sm uppercase">
-        {label} {length && <span>({length})</span>}
+        {label} {length !== undefined && <span>({length})</span>}
       </h3>
     </div>
   );

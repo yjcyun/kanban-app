@@ -26,7 +26,8 @@ const Modals = () => {
       {modalState.type === "add-board" && (
         <AddBoard {...modalState} currentBoard={boardTab} />
       )}
-      {modalState.type === "edit-board" && (
+      {(modalState.type === "edit-board" ||
+        modalState.type === "add-column") && (
         <EditBoard {...modalState} currentBoard={boardTab} />
       )}
       {modalState.type === "delete-board" && (

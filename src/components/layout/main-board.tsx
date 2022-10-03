@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import BoardColumn from "@ui/board-column";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { selectTab } from "@store/board-slice";
+import EmptyBoard from "./empty-board";
 
 const MainBoard = () => {
   const { boards } = useAppSelector((state) => state.tasks);
@@ -41,7 +42,11 @@ const MainBoard = () => {
           id={index}
         />
       ))}
-      <BoardColumn label="" />
+      {boards[selectedBoardIndex]?.columns.length > 0 ? (
+        <BoardColumn label="" />
+      ) : (
+        <EmptyBoard />
+      )}
     </>
   );
 };

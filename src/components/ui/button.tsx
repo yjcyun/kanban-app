@@ -5,9 +5,15 @@ type ButtonType = "primary" | "secondary" | "destructive";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   buttonType: ButtonType;
   size?: "large" | "small";
+  classNames?: string;
 }
 
-const Button = ({ buttonType, size = "small", ...props }: ButtonProps) => {
+const Button = ({
+  buttonType,
+  size = "small",
+  classNames,
+  ...props
+}: ButtonProps) => {
   const mapTypeStyle = () => {
     switch (buttonType) {
       case "secondary":
@@ -32,7 +38,7 @@ const Button = ({ buttonType, size = "small", ...props }: ButtonProps) => {
 
   return (
     <button
-      className={`rounded-3xl w-full disabled:text-medium-gray/50 disabled:cursor-not-allowed ${mapSizeStyle()} ${mapTypeStyle()}`}
+      className={`rounded-3xl w-full disabled:text-medium-gray/50 disabled:cursor-not-allowed ${mapSizeStyle()} ${mapTypeStyle()} ${classNames}`}
       {...props}
     />
   );

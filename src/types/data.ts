@@ -1,5 +1,3 @@
-import { ModalState } from "@store/modal-slice";
-
 export type Subtasks = Array<{ isCompleted: boolean; title: string }>;
 
 export type TaskType = {
@@ -9,6 +7,11 @@ export type TaskType = {
   subtasks: Subtasks;
   title: string;
 };
+
+export interface ModalState {
+  type: string;
+  data?: TaskType | null;
+}
 
 export interface ModalType extends ModalState {
   currentBoard: string;

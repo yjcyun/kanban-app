@@ -26,7 +26,6 @@ const Item = ({
   Icon,
   isSelected = false,
   label,
-  defaultTab,
 }: ItemProps) => {
   const IconComponent = Icon!;
 
@@ -70,7 +69,6 @@ const SidebarItem = ({
 
   const onSelectTab = () => {
     if (highlight) {
-      console.log(highlight);
       dispatch(openModal({ type: "add-board" }));
     } else {
       dispatch(selectTab(label));

@@ -23,9 +23,13 @@ const Dropdown = ({ onEdit, onDelete, text, direction }: DropdownProps) => {
     >
       <VerticalIcon className="group-hover:fill-main-purple" />
       <div
-        className={`absolute w-[192px] shadow-dropbox rounded-lg p-4 bg-white body-lg text-left space-y-4 z-20 -translate-x-1/2 
+        className={`absolute w-[192px] shadow-dropbox rounded-lg p-4 bg-white body-lg text-left space-y-4 z-20 
         ${openDropdown ? "block" : "hidden"} 
-        ${direction === "right" ? "mt-9 right-0" : "mt-6 left-0"}`}
+        ${
+          direction === "right"
+            ? "mt-9 right-2"
+            : "mt-6 left-0 -translate-x-1/2 "
+        }`}
       >
         <p onClick={onEdit}>Edit {text}</p>
         <p className="text-red" onClick={onDelete}>

@@ -1,6 +1,5 @@
 import { ReactComponent as HideIcon } from "@assets/icon-hide-sidebar.svg";
 import { ReactComponent as ShowIcon } from "@assets/icon-show-sidebar.svg";
-import { ReactComponent as BoardIcon } from "@assets/icon-board.svg";
 import SidebarItem from "@ui/sidebar-item";
 import ThemeToggler from "./theme-toggler";
 import { useAppSelector } from "@hooks/useStore";
@@ -21,7 +20,9 @@ const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
         }`}
       >
         <div>
-          <h4 className="heading-sm uppercase pl-6 mb-5">all boards (3)</h4>
+          <h4 className="heading-sm uppercase pl-6 mb-5">
+            all boards ({boards.length})
+          </h4>
           <ul>
             {boards.map((board, index) => (
               <SidebarItem

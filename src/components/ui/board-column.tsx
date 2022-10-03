@@ -12,7 +12,7 @@ type BoardColumnProps = {
 
 const BoardColumn = ({ label, length, tasks, id }: BoardColumnProps) => {
   return (
-    <div className="w-[280px] flex flex-col h-full">
+    <div className="w-[280px] flex flex-col h-full shrink-0 last:pr-6">
       <ColumnTitle label={label.toLowerCase()} length={length!} id={id!} />
       {tasks ? (
         <div className="grid gap-5">

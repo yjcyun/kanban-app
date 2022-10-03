@@ -24,9 +24,9 @@ const Layout = ({ children }: LayoutProps) => {
         )}
         <div
           className={[
-            "flex gap-6 absolute p-6 min-w-full h-full",
-            showSidebar ? "left-[300px]" : "left-0",
-            width! > 640 ? "left-[300px]" : "left-0",
+            "flex gap-6 absolute p-6 h-full",
+            showSidebar ? "left-[300px] main-width" : "left-0",
+            width! > 640 ? "left-[300px] main-width" : "left-0  w-full",
           ]
             .filter(Boolean)
             .join(" ")}
