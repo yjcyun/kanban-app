@@ -11,7 +11,7 @@ const ThemeToggler = () => {
         <SunIcon />
         <button
           onClick={switchTheme}
-          className="w-10 h-5 bg-main-purple rounded-xl p-[3px]"
+          className="w-10 h-5 bg-main-purple hover:bg-main-purple-hover rounded-xl p-[3px]"
         >
           <div
             className={`w-[14px] h-[14px] rounded-full bg-white transition ${

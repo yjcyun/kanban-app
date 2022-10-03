@@ -55,7 +55,9 @@ const TaskForm = ({ mode, onSubmitHandler, boardColumns }: TaskFormProps) => {
       <FormControl label="Title">
         <input
           type="text"
-          className={`input-field ${errors.title ? "border-red" : ""}`}
+          className={`input-field ${
+            errors.title ? "border-red focus:border-red" : ""
+          }`}
           {...register("title", {
             required: true,
           })}
@@ -81,7 +83,9 @@ const TaskForm = ({ mode, onSubmitHandler, boardColumns }: TaskFormProps) => {
                 <input
                   type="text"
                   className={`input-field ${
-                    errors.subtasks?.[index]?.title ? "border-red" : ""
+                    errors.subtasks?.[index]?.title
+                      ? "border-red focus:border-red"
+                      : ""
                   }`}
                   placeholder="e.g. Make coffee"
                   {...register(`subtasks.${index}.title`, {
@@ -95,7 +99,11 @@ const TaskForm = ({ mode, onSubmitHandler, boardColumns }: TaskFormProps) => {
                 )}
               </div>
               <button type="button" onClick={() => onDeleteSubtask(index)}>
-                <CloseIcon />
+                <CloseIcon
+                  className={`${
+                    errors.subtasks?.[index]?.title ? "fill-red" : ""
+                  }`}
+                />
               </button>
             </div>
           ))}

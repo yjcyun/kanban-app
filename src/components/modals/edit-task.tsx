@@ -32,7 +32,7 @@ const EditTask = ({ currentBoard, data }: ModalType) => {
       <ModalTitle title="Edit Task" />
       <FormProvider {...methods}>
         <TaskForm
-          mode="add"
+          mode="edit"
           onSubmitHandler={onSubmit}
           boardColumns={boardColumns}
         />

@@ -8,7 +8,7 @@ type FormControlProps = {
 const FormControl = ({ label, children }: FormControlProps) => {
   return (
     <div className="flex flex-col relative">
-      <label className="body-md mb-2">{label}</label>
+      <label className="body-md mb-2 subheading-color">{label}</label>
       {children}
     </div>
   );

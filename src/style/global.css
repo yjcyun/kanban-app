@@ -73,13 +73,22 @@
   .bg-secondary-color {
     @apply bg-white dark:bg-dark-gray;
   }
+  .bg-tertiary-color {
+    @apply bg-white dark:bg-very-dark-gray;
+  }
   .heading-color {
     @apply text-black dark:text-white;
   }
+  .subheading-color{
+    @apply text-medium-gray dark:text-white;
+  }
+  .placeholder-color {
+    @apply placeholder:text-black/25 dark:placeholder:text-white/25;
+  }
   .input-field {
-    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple placeholder:text-black/25 text-black w-full;
+    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 bg-transparent focus:outline-0 focus:border-main-purple placeholder-color heading-color w-full;
   }
   .textarea-field {
-    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 focus:outline-0 focus:border-main-purple resize-none h-28 placeholder:text-black/25 text-black;
+    @apply body-lg border border-medium-gray/25 rounded-[4px] py-2 px-4 bg-transparent  focus:outline-0 focus:border-main-purple resize-none h-28 placeholder-color heading-color;
   }
 }

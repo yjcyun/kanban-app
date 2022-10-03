@@ -15,7 +15,11 @@ const BoardColumn = ({ label, length, tasks, id }: BoardColumnProps) => {
     <div className="w-[280px] flex flex-col h-full shrink-0 last:pr-6">
       <ColumnTitle label={label.toLowerCase()} length={length!} id={id!} />
       {tasks ? (
-        <div className="grid gap-5">
+        <div
+          className={`grid gap-5 border-dashed pb-6 ${
+            length! > 0 ? "" : "h-full border-2 rounded-md border-color"
+          }`}
+        >
           {tasks.map((task) => (
             <BoardCard
               key={task.title}

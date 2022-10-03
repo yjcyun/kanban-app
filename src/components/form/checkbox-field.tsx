@@ -14,7 +14,7 @@ const CheckboxField = ({
   onChange,
 }: CheckboxFieldProps) => {
   return (
-    <label className="flex items-center cursor-pointer grou p-3 bg-light-gray hover:bg-main-purple/25 rounded-[4px] mb-2 last:mb-0">
+    <label className="flex items-center cursor-pointer p-3 bg-color hover:bg-main-purple/25 rounded-[4px] mb-2 last:mb-0">
       <input
         type="checkbox"
         className="appearance-none"
@@ -33,7 +33,11 @@ const CheckboxField = ({
           } absolute top-[3.5px] left-[2.5px]`}
         />
       </div>
-      <span className={`body-md ${isChecked ? "line-through" : "text-black"}`}>
+      <span
+        className={`body-md heading-color ${
+          isChecked ? "line-through text-black/50 dark:text-white/50" : ""
+        }`}
+      >
         {label}
       </span>
     </label>

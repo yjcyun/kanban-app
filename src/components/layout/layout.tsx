@@ -16,7 +16,7 @@ const Layout = ({ children }: LayoutProps) => {
 
   return (
     <div className="h-screen flex flex-col">
-      <Header />
+      <Header showSidebar={showSidebar} />
 
       <main className="flex w-full h-full overflow-y-auto relative">
         {width! > 640 && (
@@ -25,8 +25,8 @@ const Layout = ({ children }: LayoutProps) => {
         <div
           className={[
             "flex gap-6 absolute p-6 h-full",
-            showSidebar ? "left-[300px] main-width" : "left-0",
-            width! > 640 ? "left-[300px] main-width" : "left-0  w-full",
+            showSidebar ? "left-[300px] main-width" : "left-0 w-full",
+            width! > 640 ? "left-[300px] main-width" : "left-0 w-full",
           ]
             .filter(Boolean)
             .join(" ")}

@@ -26,7 +26,7 @@ const SelectField = ({ options, currentOption, onSetStatus }: SelectProps) => {
     <div className="relative" ref={ref}>
       {/* Selected Field */}
       <div
-        className={`flex items-center justify-between cursor-pointer border border-medium-gray/25 py-2 px-4 body-lg rounded text-black hover:border-violet ${
+        className={`flex items-center justify-between cursor-pointer border border-medium-gray/25 py-2 px-4 body-lg rounded heading-color hover:border-violet ${
           isDropped && "border-main-purple"
         }`}
         onClick={() => setIsDropped(!isDropped)}
@@ -37,7 +37,7 @@ const SelectField = ({ options, currentOption, onSetStatus }: SelectProps) => {
 
       {/* Select Dropbox */}
       <div
-        className={`absolute mt-3 shadow-dropbox w-full rounded-lg bg-white dark:bg-dark-navy text-navy dark:text-white z-10 p-4 ${
+        className={`absolute mt-3 shadow-dropbox w-full rounded-lg bg-tertiary-color z-10 p-4 ${
           isDropped ? "block" : "hidden"
         }`}
       >

@@ -5,7 +5,11 @@ type ModalTitleProps = {
 
 const ModalTitle = ({ title, warning = false }: ModalTitleProps) => {
   return (
-    <h2 className={`heading-lg ${warning ? "text-red" : "text-black"}`}>
+    <h2
+      className={`heading-lg heading-color ${
+        warning ? "text-red dark:text-red" : ""
+      }`}
+    >
       {title}
     </h2>
   );

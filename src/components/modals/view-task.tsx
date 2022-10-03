@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { openModal } from "@store/modal-slice";
 import { updateTask } from "@store/task-slice";
 import Dropdown from "@components/ui/dropdown";
+import { useWindowSize } from "@hooks/useWindowSize";
 
 const completedSubtasks = (subtasks: Subtasks) =>
   subtasks.filter((task) => task.isCompleted).length;
@@ -17,6 +18,7 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
   const [tasks, setTasks] = useState(data!);
   const { boardColumns } = useAppSelector((state) => state.tasks);
   const dispatch = useAppDispatch();
+  const { width } = useWindowSize();
 
   const onSubtasksChange = (index: number) => {
     const copiedNewSubtasks = [...tasks.subtasks];
@@ -62,14 +64,14 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
           <ModalTitle title={title} />
           <Dropdown
             text="Task"
-            direction="center"
+            direction={width! > 640 ? "center" : "right"}
             onEdit={onEditTask}
             onDelete={onDeleteTask}
           />
         </div>
         {description && <p className="body-lg">{description}</p>}
         <div>
-          <h3 className="body-md mb-4">
+          <h3 className="body-md mb-4 subheading-color">
             Subtasks ({completedSubtasks(subtasks)} of {subtasks.length})
           </h3>
           {tasks.subtasks.map((task, index) => (
@@ -83,7 +85,7 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
           ))}
         </div>
         <div>
-          <h3 className="body-md mb-4">Current Status</h3>
+          <h3 className="body-md mb-4 subheading-color">Current Status</h3>
           <SelectField
             options={boardColumns}
             currentOption={status}

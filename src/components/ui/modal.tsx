@@ -18,12 +18,12 @@ const Modal = ({ children }: ModalProps) => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-full z-10 bg-[#000000]/50 items-center justify-center ${
+      className={`fixed top-0 left-0 w-full h-full z-10 bg-[#000000]/50 items-center justify-center px-4 sm:px-0 ${
         type !== "" ? "flex" : "hidden"
       }`}
     >
       <div
-        className="bg-secondary-color w-full mx-4 sm:w-[480px] sm:mx-0 h-fit rounded-md p-8"
+        className={`bg-secondary-color w-full  sm:w-[480px] sm:h-fit rounded-md p-6 sm:p-8 `}
         ref={ref}
       >
         {children}

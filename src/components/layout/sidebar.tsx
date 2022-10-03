@@ -1,6 +1,6 @@
 import { ReactComponent as HideIcon } from "@assets/icon-hide-sidebar.svg";
 import { ReactComponent as ShowIcon } from "@assets/icon-show-sidebar.svg";
-import SidebarItem from "@ui/sidebar-item";
+import SidebarItem from "./sidebar-item";
 import ThemeToggler from "./theme-toggler";
 import { useAppSelector } from "@hooks/useStore";
 
@@ -51,7 +51,7 @@ const Sidebar = ({ showSidebar, onShowSidebar }: SidebarProps) => {
           className="fixed bottom-8 left-0 z-10"
           onClick={() => onShowSidebar(true)}
         >
-          <div className="bg-main-purple p-[18px] rounded-r-full">
+          <div className="bg-main-purple hover:bg-main-purple-hover p-[18px] rounded-r-full">
             <ShowIcon />
           </div>
         </button>

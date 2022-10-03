@@ -31,15 +31,12 @@ const Item = ({
 
   return (
     <div
-      className={[
-        "heading-md flex items-center gap-3 whitespace-nowrap py-[14px] pl-6  rounded-r-full group-hover:text-main-purple ",
+      className={`heading-md flex items-center gap-3 whitespace-nowrap py-[14px] pl-6  rounded-r-full group hover:text-main-purple ${
         isSelected
           ? "bg-main-purple text-white group-hover:text-white"
-          : "group-hover:bg-main-purple/10",
-        highlight ? "text-main-purple" : "",
-      ]
-        .filter(Boolean)
-        .join(" ")}
+          : "group-hover:bg-main-purple/10 dark:group-hover:bg-white"
+      }
+       ${highlight ? "text-main-purple" : ""}`}
     >
       <IconComponent
         className={[
