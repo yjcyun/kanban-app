@@ -8,7 +8,7 @@ type SelectProps = {
   onSetStatus: (status: string) => void;
 };
 
-const Select = ({ options, currentOption, onSetStatus }: SelectProps) => {
+const SelectField = ({ options, currentOption, onSetStatus }: SelectProps) => {
   const [isDropped, setIsDropped] = useState(false);
   const [selectedOption, setSelectedOption] = useState(currentOption);
 
@@ -57,4 +57,4 @@ const Select = ({ options, currentOption, onSetStatus }: SelectProps) => {
   );
 };
 
-export default Select;
+export default SelectField;

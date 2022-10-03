@@ -1,18 +1,18 @@
 import { ReactComponent as CheckIcon } from "@assets/icon-check.svg";
 
-type SubtaskCheckboxProps = {
+type CheckboxFieldProps = {
   label: string;
   isChecked: boolean;
   onChange: (index: number) => void;
   id: number;
 };
 
-const SubtaskCheckbox = ({
+const CheckboxField = ({
   id,
   label,
   isChecked,
   onChange,
-}: SubtaskCheckboxProps) => {
+}: CheckboxFieldProps) => {
   return (
     <label className="flex items-center cursor-pointer grou p-3 bg-light-gray hover:bg-main-purple/25 rounded-[4px] mb-2 last:mb-0">
       <input
@@ -40,4 +40,4 @@ const SubtaskCheckbox = ({
   );
 };
 
-export default SubtaskCheckbox;
+export default CheckboxField;

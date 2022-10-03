@@ -3,7 +3,7 @@ import { ReactComponent as CloseIcon } from "@assets/icon-cross.svg";
 import Modal from "@ui/modal";
 import ModalTitle from "@ui/modal-title";
 import Button from "@ui/button";
-import Select from "@components/form/select";
+import SelectField from "@components/form/select-field";
 import FormControl from "@components/form/form-control";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { ModalType, TaskType } from "@type/data";
@@ -120,7 +120,7 @@ const EditTask = ({ currentBoard, data }: ModalType) => {
           </div>
         </FormControl>
         <FormControl label="Status">
-          <Select
+          <SelectField
             options={boardColumns}
             currentOption={status ? status : boardColumns[0]}
             onSetStatus={onSetStatus}

@@ -8,7 +8,7 @@ import { BoardType, ModalType } from "@type/data";
 import { ReactComponent as CloseIcon } from "@assets/icon-cross.svg";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { closeModal } from "@store/modal-slice";
-import { addBoard, setBoardColumns, updateBoard } from "@store/task-slice";
+import { setBoardColumns, updateBoard } from "@store/task-slice";
 import { selectTab } from "@store/board-slice";
 
 const EditBoard = ({ currentBoard, data }: ModalType) => {
