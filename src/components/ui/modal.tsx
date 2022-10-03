@@ -23,7 +23,7 @@ const Modal = ({ children }: ModalProps) => {
       }`}
     >
       <div
-        className={`bg-secondary-color w-full  sm:w-[480px] sm:h-fit rounded-md p-6 sm:p-8 `}
+        className={`bg-secondary-color w-full  sm:w-[480px] max-h-[450px] overflow-y-auto sm:max-h-fit sm:h-fit rounded-md p-6 sm:p-8 `}
         ref={ref}
       >
         {children}

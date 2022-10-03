@@ -37,6 +37,27 @@
   body{
     @apply bg-light-gray dark:bg-very-dark-gray text-medium-gray;
   }
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    @apply bg-dark-gray;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    @apply bg-main-purple rounded-lg;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-main-purple-hover; 
+  }
 }
 
 @layer components {

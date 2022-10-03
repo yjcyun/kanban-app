@@ -19,6 +19,7 @@ import storage from "redux-persist/lib/storage";
 import taskReducer from "./task-slice";
 import modalReducer from "./modal-slice";
 import boardReducer from "./board-slice";
+import themeReducer from "./theme-slice";
 
 const persistConfig = {
   key: "kanban-app",
@@ -31,6 +32,7 @@ const rootReducer = combineReducers({
   tasks: taskReducer,
   modal: modalReducer,
   boardTab: boardReducer,
+  theme: themeReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

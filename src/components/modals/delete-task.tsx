@@ -26,7 +26,7 @@ const DeleteTask = ({ data, currentBoard }: ModalType) => {
           Are you sure you want to delete the ‘{data?.title}’ task and its
           subtasks? This action cannot be reversed.
         </p>
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <Button buttonType="destructive" onClick={onTaskDelete}>
             Delete
           </Button>

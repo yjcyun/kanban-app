@@ -6,6 +6,7 @@ import { setBoardColumns } from "@store/task-slice";
 
 type SidebarItemProps = {
   defaultTab?: boolean;
+  handleBoardItemClick?: () => void;
   highlight?: boolean;
   Icon?: React.FC<React.SVGProps<SVGSVGElement>>;
   label: string;
@@ -54,6 +55,7 @@ const Item = ({
 
 const SidebarItem = ({
   defaultTab,
+  handleBoardItemClick,
   highlight = false,
   Icon,
   label,
@@ -71,6 +73,8 @@ const SidebarItem = ({
       dispatch(selectTab(label));
       dispatch(setBoardColumns(label));
     }
+
+    handleBoardItemClick && handleBoardItemClick();
   };
 
   return (
