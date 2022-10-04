@@ -92,7 +92,6 @@ export const taskSlice = createSlice({
           column.tasks?.find((task) => task.id === prevTask.id)
         );
 
-        // Find the index of the column that's being updated
         const newTargetColumnIndex = targetBoard.columns.findIndex(
           (column) => column.name === updatedTask.status
         );
@@ -207,6 +206,45 @@ export const taskSlice = createSlice({
         state.boards.splice(targetBoardIndex, 1);
       }
     },
+    dragEndTask: (state, action: PayloadAction<any>) => {
+      const { currentBoardIndex, destination, source } = action.payload;
+      const sourceColumnIndex = state.boards[
+        currentBoardIndex
+      ]?.columns.findIndex((column) => column.id === source.droppableId);
+
+      const destinationColumnIndex = state.boards[
+        currentBoardIndex
+      ]?.columns.findIndex((column) => column.id === destination.droppableId);
+
+      // Plain English
+      // 1. Make a copy of all the columns [{name:"Todo"...}, {name:"Doing",,,},....]
+      const columnsCopy = [...state.boards[currentBoardIndex]?.columns];
+
+      // 2. Get the array of all tasks from the source column
+      const sourceTasks = columnsCopy[sourceColumnIndex].tasks;
+
+      // 3. Remove the selected item from the array(step 2)
+      const newTasksList = Array.from(sourceTasks!);
+      const [removedItem] = newTasksList.splice(source.index, 1);
+
+      // 4. Replace the entire column tasks array with the new array of taskscreated from step3
+      columnsCopy[sourceColumnIndex].tasks = newTasksList;
+
+      // 5. Get the tasks array of destination
+      const destinationTasks = columnsCopy[destinationColumnIndex].tasks;
+      removedItem.status = columnsCopy[destinationColumnIndex].name;
+
+      // 6. Replace array from step 5 with the array with replaced task
+      const newAddedTasksList = Array.from(destinationTasks);
+      newAddedTasksList.splice(destination.index, 0, removedItem);
+
+      columnsCopy[destinationColumnIndex].tasks = [...newAddedTasksList];
+
+      state.boards[currentBoardIndex] = {
+        ...state.boards[currentBoardIndex],
+        columns: columnsCopy,
+      };
+    },
   },
 });
 
@@ -219,6 +257,7 @@ export const {
   addBoard,
   updateBoard,
   deleteBoard,
+  dragEndTask,
 } = taskSlice.actions;
 
 export default taskSlice.reducer;

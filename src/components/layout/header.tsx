@@ -1,11 +1,9 @@
-import { useState } from "react";
 import { ReactComponent as Logo } from "@assets/logo-mobile.svg";
 import { ReactComponent as LogoLight } from "@assets/logo-light.svg";
 import { ReactComponent as LogoDark } from "@assets/logo-dark.svg";
 import { ReactComponent as DownIcon } from "@assets/icon-chevron-down.svg";
 import { ReactComponent as PlusIcon } from "@assets/icon-add-task-mobile.svg";
 import { useWindowSize } from "@hooks/useWindowSize";
-import { useTheme } from "@hooks/useTheme";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { openModal } from "@store/modal-slice";
 import Button from "@ui/button";
@@ -30,7 +28,7 @@ const Header = ({ showSidebar, showBoards, onShowBoards }: HeaderProps) => {
 
   const themeLogo = theme === "dark" ? <LogoLight /> : <LogoDark />;
 
-  const hasColumns = boards[currentBoardIndex].columns.length > 0;
+  const hasColumns = boards[currentBoardIndex]?.columns.length > 0;
 
   const onAddTask = () => {
     dispatch(openModal({ type: "add-task" }));

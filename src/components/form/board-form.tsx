@@ -50,7 +50,9 @@ const BoardForm = ({ mode, onSubmitHandler }: BoardFormProps) => {
       <FormControl label="Name">
         <input
           type="text"
-          className={`input-field ${errors.name ? "border-red" : ""}`}
+          className={`input-field ${
+            errors.name ? "border-red focus:border-red" : ""
+          }`}
           placeholder="e.g. Web Design"
           {...register("name", {
             required: true,
@@ -70,7 +72,9 @@ const BoardForm = ({ mode, onSubmitHandler }: BoardFormProps) => {
                 <input
                   type="text"
                   className={`input-field ${
-                    errors.columns?.[index]?.name ? "border-red" : ""
+                    errors.columns?.[index]?.name
+                      ? "border-red focus:border-red"
+                      : ""
                   }`}
                   placeholder="e.g. Done"
                   {...register(`columns.${index}.name`, {
@@ -84,7 +88,11 @@ const BoardForm = ({ mode, onSubmitHandler }: BoardFormProps) => {
                 )}
               </div>
               <button type="button" onClick={() => onDeleteSubtask(index)}>
-                <CloseIcon />
+                <CloseIcon
+                  className={`${
+                    errors.columns?.[index]?.name ? "fill-red" : ""
+                  }`}
+                />
               </button>
             </div>
           ))}

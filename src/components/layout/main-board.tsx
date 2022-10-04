@@ -1,7 +1,9 @@
 import { useEffect } from "react";
-import BoardColumn from "@ui/board-column";
+import { DragDropContext, DropResult } from "react-beautiful-dnd";
 import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { selectTab } from "@store/board-slice";
+import { dragEndTask } from "@store/task-slice";
+import BoardColumn from "@ui/board-column";
 import EmptyBoard from "./empty-board";
 
 const MainBoard = () => {
@@ -31,15 +33,39 @@ const MainBoard = () => {
     (board) => board.name === boardTab
   );
 
+  const onDragEnd = (result: DropResult) => {
+    const { destination, source } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      destination.droppableId === source.droppableId &&
+      destination.index === source.index
+    ) {
+      return;
+    }
+
+    dispatch(
+      dragEndTask({
+        currentBoardIndex: selectedBoardIndex,
+        destination,
+        source,
+      })
+    );
+  };
+
   return (
-    <>
+    <DragDropContext onDragEnd={onDragEnd}>
       {boards[selectedBoardIndex]?.columns.map((column, index) => (
         <BoardColumn
           tasks={column.tasks}
           label={column.name}
           length={column.tasks.length}
           key={column.name}
-          id={index}
+          id={column.id}
+          index={index}
         />
       ))}
       {boards[selectedBoardIndex]?.columns.length > 0 ? (
@@ -47,7 +73,7 @@ const MainBoard = () => {
       ) : (
         <EmptyBoard />
       )}
-    </>
+    </DragDropContext>
   );
 };
 
