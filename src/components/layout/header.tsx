@@ -8,6 +8,7 @@ import { useAppDispatch, useAppSelector } from "@hooks/useStore";
 import { openModal } from "@store/modal-slice";
 import Button from "@ui/button";
 import Dropdown from "@ui/dropdown";
+import { Link } from "react-router-dom";
 
 type HeaderProps = {
   showSidebar: boolean;
@@ -44,22 +45,21 @@ const Header = ({ showSidebar, showBoards, onShowBoards }: HeaderProps) => {
 
   return (
     <header className="flex items-center bg-white dark:bg-dark-gray h-16 sm:h-20 lg:h-24 w-full flex-shrink-0">
-      <div
+      <Link
         className={`sm:border-r  border-color h-full flex items-center sm:pr-6 pl-4 shrink-0 ${
           showSidebar ? "sm:w-[300px]" : "sm:border-b sm:w-[210px]"
         }`}
+        to="/"
       >
         {width! > 640 ? themeLogo : <Logo />}
-      </div>
+      </Link>
       <div className="flex h-full w-full justify-between px-4 sm:pl-6 sm:border-b border-color">
         <div
           className="flex items-center gap-2"
           role={width! > 640 ? "" : "button"}
           onClick={onShowBoards}
         >
-          <h2 className="heading-lg text-black dark:text-white">
-            Platform Launch
-          </h2>
+          <h2 className="heading-lg text-black dark:text-white">{boardTab}</h2>
           <DownIcon
             className={`sm:hidden transition duration-150 ${
               showBoards ? "-rotate-180" : ""

@@ -22,9 +22,7 @@ const BoardColumn = ({ label, length, tasks, id, index }: BoardColumnProps) => {
             <div
               {...provided.droppableProps}
               ref={provided.innerRef}
-              className={`grid gap-5 border-dashed pb-6 ${
-                length! > 0 ? "" : "h-full border-2 rounded-md border-color"
-              }`}
+              className={`grid gap-5 border-dashed pb-6`}
             >
               {tasks.map((task, index) => {
                 const taskId = task.id.toString();

@@ -26,6 +26,7 @@ const persistConfig = {
   version: 1,
   storage,
   debug: true,
+  blacklist: ["modal"],
 };
 
 const rootReducer = combineReducers({

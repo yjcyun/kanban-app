@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 import { ColumnType, TaskType } from "@type/data";
+import { addToArray, removeFromArray } from "@utils/util-functions";
 
 export interface TaskState {
   boards: {
@@ -107,7 +107,9 @@ export const taskSlice = createSlice({
         ].tasks.splice(targetTaskIndex, 1);
 
         // Add an updated task
-        stateBoard[targetBoardIndex].columns[newTargetColumnIndex].tasks.push(
+        stateBoard[targetBoardIndex].columns[newTargetColumnIndex].tasks.splice(
+          targetTaskIndex,
+          0,
           updatedTask
         );
       }
@@ -203,7 +205,8 @@ export const taskSlice = createSlice({
         const targetBoardIndex = state.boards.findIndex(
           (board) => board.name === currentBoard
         );
-        state.boards.splice(targetBoardIndex, 1);
+        const [, result] = removeFromArray(state.boards, targetBoardIndex);
+        state.boards = result;
       }
     },
     dragEndTask: (state, action: PayloadAction<any>) => {
@@ -216,7 +219,6 @@ export const taskSlice = createSlice({
         currentBoardIndex
       ]?.columns.findIndex((column) => column.id === destination.droppableId);
 
-      // Plain English
       // 1. Make a copy of all the columns [{name:"Todo"...}, {name:"Doing",,,},....]
       const columnsCopy = [...state.boards[currentBoardIndex]?.columns];
 
@@ -224,10 +226,12 @@ export const taskSlice = createSlice({
       const sourceTasks = columnsCopy[sourceColumnIndex].tasks;
 
       // 3. Remove the selected item from the array(step 2)
-      const newTasksList = Array.from(sourceTasks!);
-      const [removedItem] = newTasksList.splice(source.index, 1);
+      const [removedItem, newTasksList] = removeFromArray<TaskType>(
+        sourceTasks!,
+        source.index
+      );
 
-      // 4. Replace the entire column tasks array with the new array of taskscreated from step3
+      // 4. Replace the entire column tasks array with the new array of tasks created from step3
       columnsCopy[sourceColumnIndex].tasks = newTasksList;
 
       // 5. Get the tasks array of destination
@@ -235,10 +239,11 @@ export const taskSlice = createSlice({
       removedItem.status = columnsCopy[destinationColumnIndex].name;
 
       // 6. Replace array from step 5 with the array with replaced task
-      const newAddedTasksList = Array.from(destinationTasks);
-      newAddedTasksList.splice(destination.index, 0, removedItem);
-
-      columnsCopy[destinationColumnIndex].tasks = [...newAddedTasksList];
+      columnsCopy[destinationColumnIndex].tasks = addToArray(
+        destinationTasks,
+        destination.index,
+        removedItem
+      );
 
       state.boards[currentBoardIndex] = {
         ...state.boards[currentBoardIndex],

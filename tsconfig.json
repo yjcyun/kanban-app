@@ -29,6 +29,7 @@
       "@store/*": ["store/*"],
       "@style/*": ["style/*"],
       "@type/*": ["types/*"],
+      "@utils/*": ["utils/*"],
     }
   },
   "include": [

@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { BrowserRouter } from "react-router-dom";
 import Layout from "@components/layout/layout";
 import MainBoard from "@components/layout/main-board";
 import { useAppDispatch } from "@hooks/useStore";
@@ -26,9 +27,11 @@ const App = () => {
   }, [dispatch]);
 
   return (
-    <Layout>
-      <MainBoard />
-    </Layout>
+    <BrowserRouter>
+      <Layout>
+        <MainBoard />
+      </Layout>
+    </BrowserRouter>
   );
 };
 
