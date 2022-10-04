@@ -70,10 +70,10 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
           />
         </div>
         {description && <p className="body-lg">{description}</p>}
-        <div>
-          <h3 className="body-md mb-4 subheading-color">
+        <fieldset>
+          <legend className="body-md mb-4 subheading-color">
             Subtasks ({completedSubtasks(subtasks)} of {subtasks.length})
-          </h3>
+          </legend>
           {tasks.subtasks.map((task, index) => (
             <CheckboxField
               label={task.title}
@@ -83,15 +83,17 @@ const ViewTask = ({ data, currentBoard }: ModalType) => {
               id={index}
             />
           ))}
-        </div>
-        <div>
-          <h3 className="body-md mb-4 subheading-color">Current Status</h3>
+        </fieldset>
+        <fieldset>
+          <legend className="body-md mb-4 subheading-color">
+            Current Status
+          </legend>
           <SelectField
             options={boardColumns}
             currentOption={status}
             onSetStatus={onStatusChange}
           />
-        </div>
+        </fieldset>
       </div>
     </Modal>
   );

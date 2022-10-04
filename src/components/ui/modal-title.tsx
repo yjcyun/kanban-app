@@ -9,6 +9,7 @@ const ModalTitle = ({ title, warning = false }: ModalTitleProps) => {
       className={`heading-lg heading-color ${
         warning ? "text-red dark:text-red" : ""
       }`}
+      id="Dialog title"
     >
       {title}
     </h2>

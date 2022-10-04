@@ -107,9 +107,18 @@ const BoardForm = ({ mode, onSubmitHandler }: BoardFormProps) => {
         </div>
       </FormControl>
 
-      <Button type="submit" buttonType="primary">
-        {mode === "add" ? "Create New Board" : "Save Changes"}
-      </Button>
+      <div className="flex gap-4">
+        <Button type="submit" buttonType="primary">
+          {mode === "add" ? "Create New Board" : "Save Changes"}
+        </Button>
+        <Button
+          type="button"
+          buttonType="secondary"
+          onClick={() => dispatch(closeModal())}
+        >
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 };
