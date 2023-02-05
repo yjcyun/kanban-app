@@ -16,6 +16,9 @@ module.exports = {
         "very-dark-grey": "#20212C",
         "almost-black": "#000112",
       },
+      fontFamily: {
+        jakarta: ['"Plus Jakarta Sans"', "sans-serif"],
+      },
     },
   },
   plugins: [],

@@ -1,5 +1,11 @@
+import Text from "./ui/Text/Text";
+
 const App = () => {
-  return <div className="text-lg font-bold">App</div>;
+  return (
+    <div>
+      <Text>hello world</Text>
+    </div>
+  );
 };
 
 export default App;

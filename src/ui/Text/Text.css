@@ -1,0 +1,30 @@
+.headingXL {
+  @apply font-bold text-2xl;
+  line-height: 24px;
+}
+
+.headingL {
+  @apply font-bold text-lg;
+  line-height: 23px;
+}
+
+.headingM {
+  @apply font-bold text-[15px];
+  line-height: 19px;
+}
+
+.headingS {
+  @apply font-bold text-xs;
+  letter-spacing: 2.4px;
+  line-height: 15px;
+}
+
+.bodyL {
+  @apply font-medium text-[13px];
+  line-height: 23px;
+}
+
+.bodyM {
+  @apply font-bold text-xs;
+  line-height: 15px;
+}

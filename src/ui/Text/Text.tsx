@@ -2,32 +2,32 @@ import { createElement, HTMLProps, ReactNode } from "react";
 import classnames from "classnames";
 import "./Text.css";
 
-type VariantMap = {
-  headingXL: "h1";
-  headingL: "h2";
-  headingM: "h3";
-  headingS: "h4";
-  bodyL: "p";
-  bodyM: "p";
-};
+export type TextElement = "h1" | "h2" | "h3" | "h4" | "p";
 
-type ValueOfVariantsMap<T> = T[keyof T];
+export type TextStyle =
+  | "headingXL"
+  | "headingL"
+  | "headingM"
+  | "headingS"
+  | "bodyL"
+  | "bodyM";
 
 interface TextProps extends HTMLProps<HTMLElement> {
-  renderAs: ValueOfVariantsMap<VariantMap>;
-  styleAs: keyof VariantMap;
+  renderAs?: TextElement;
+  styleAs?: TextStyle;
   children: ReactNode;
 }
 
 const Text = ({
-  renderAs,
-  styleAs,
+  renderAs = "p",
+  styleAs = "bodyM",
   className,
   children,
   ...rest
 }: TextProps) => {
   const props = { className: classnames(styleAs), ...rest };
 
+  // ! Create a map and if no renderAs, grab the value of styleAs
   return createElement(renderAs, props, children);
 };
 
